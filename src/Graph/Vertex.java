@@ -1,18 +1,18 @@
 package Graph;
 
-public class Vertex<K> {
+public class Vertex<T> {
     
-    private K name;
+    private T name;
 
-    public Vertex(K name) {
+    public Vertex(T name) {
         this.name = name;
     }
 
-    public K getName() {
+    public T getName() {
         return this.name;
     }
 
-    public void setName(K name) {
+    public void setName(T name) {
         this.name = name;
     }
 

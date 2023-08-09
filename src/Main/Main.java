@@ -19,7 +19,7 @@ public class Main {
         graph.addEdge("B", "D", 1.0);
         graph.addEdge("C", "D", 4.0);
         
-        System.out.println(graph);
+        System.out.println(graph.deepFirstSearch("A", "B"));
     }
     
 }

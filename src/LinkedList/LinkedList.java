@@ -33,6 +33,24 @@ public class LinkedList<T> implements Iterable<T> {
         size++;
     }
 
+    public boolean isEmpty() {
+        return this.head == null;
+    }
+
+    public boolean itExists(T data) {
+        if (this.head == null) {
+            return false;
+        }
+        Node<T> current = this.head;
+        while (current != null) {
+            if (current.getData().equals(data)) {
+                return true;
+            }
+            current = current.getNext();
+        }
+        return false;
+    }
+
     public void add(Node<T> node) {
         if (this.head == null) {
             this.head = node;
