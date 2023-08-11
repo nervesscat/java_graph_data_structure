@@ -11,15 +11,19 @@ public class Main {
         graph.addVertex("B");
         graph.addVertex("C");
         graph.addVertex("D");
+        graph.addVertex("E");
+        graph.addVertex("F");
         
         graph.addEdge("A", "B", 1.0);
-        graph.addEdge("A", "C", -1.0);
-        graph.addEdge("A", "D", 1.0);
-        graph.addEdge("B", "C", 2.0);
-        graph.addEdge("B", "D", 1.0);
-        graph.addEdge("C", "D", 4.0);
+        graph.addEdge("B", "E", -1.0);
+        graph.addEdge("E", "C", 1.0);
+        graph.addEdge("E", "D", 1.0);
+        graph.addEdge("E", "F", 4.0);
+        graph.addEdge("C", "E", 1.0);
+        graph.addEdge("D", "C", 1.0);
+        graph.addEdge("D", "F", 3.0);
         
-        System.out.println(graph.deepFirstSearch("A", "B"));
+        System.out.println(graph.deepFirstSearch("A", "F"));
     }
     
 }

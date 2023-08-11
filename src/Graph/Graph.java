@@ -64,17 +64,50 @@ public class Graph<T> {
         // ! this.graph.get(to).add(from, value); Uncomment this line if you want to make the graph undirected
     }
 
-    public LinkedList<Vertex<T>> deepFirstSearch(Vertex<T> first, Vertex<T> endPoint, LinkedList<Vertex<T>> path){
-        return null;
+    public LinkedList<Path<T>> deepFirstSearch(Vertex<T> first, Vertex<T> endPoint, Path<T> path, LinkedList<Path<T>> forest){
+        if (first == null || endPoint == null){
+            return null;
+        }
+
+        Edge<T> edges = this.graph.get(first);
+        
+        for(Vertex<T> vertex : edges.getKeys()){
+            System.out.println("Actual Vertex: " + first + " Aiming to: " + vertex);
+            if (path.getPath().itExists(vertex)){
+                System.out.println("Evitando ciclos " + vertex + " repetido");
+                break;
+            }
+
+            if (vertex.equals(endPoint)){
+                System.out.println("Gotcha!");
+                Path<T> anotherPath = new Path<T>();
+                anotherPath.add(path);
+                anotherPath.add(vertex, edges.get(vertex));
+                forest.add(anotherPath);
+                continue;
+            }
+            System.out.println("Actual Path: " + path);
+            path.add(vertex, edges.get(vertex));
+            deepFirstSearch(vertex, endPoint, path, forest);
+        }
+
+        System.out.println("Saliendo del ciclo: " + first);
+
+        return forest;
     }
 
-    public LinkedList<Vertex<T>> deepFirstSearch(Vertex<T> first, Vertex<T> endPoint){
-        LinkedList<Vertex<T>> path = new LinkedList<Vertex<T>>();
-        this.deepFirstSearch(first, endPoint, path);
-        return null;
+    public LinkedList<Path<T>> deepFirstSearch(Vertex<T> first, Vertex<T> endPoint){
+        if (first == null || endPoint == null){
+            return null;
+        }
+        Path<T> path = new Path<T>();
+        path.add(first, 0);
+        LinkedList<Path<T>> forest = new LinkedList<Path<T>>();
+        
+        return this.deepFirstSearch(first, endPoint, path, forest);
     }
 
-    public LinkedList<Vertex<T>> deepFirstSearch(T first, T endPoint){
+    public LinkedList<Path<T>> deepFirstSearch(T first, T endPoint){
         Set<Vertex<T>> keys = this.graph.getKeys();
         Vertex<T> init = null;
         Vertex<T> end = null;
@@ -87,7 +120,7 @@ public class Graph<T> {
             }
         }
 
-        if (init != null || end != null){
+        if (init == null || end == null){
             return null;
         }
 
