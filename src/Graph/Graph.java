@@ -72,7 +72,8 @@ public class Graph<T> {
         Edge<T> edges = this.graph.get(first);
         
         for(Vertex<T> vertex : edges.getKeys()){
-            System.out.println("Actual Vertex: " + first + " Aiming to: " + vertex);
+            /*
+             * System.out.println("Actual Vertex: " + first + " Aiming to: " + vertex);
             if (path.getPath().itExists(vertex)){
                 System.out.println("Evitando ciclos " + vertex + " repetido");
                 break;
@@ -89,6 +90,7 @@ public class Graph<T> {
             System.out.println("Actual Path: " + path);
             path.add(vertex, edges.get(vertex));
             deepFirstSearch(vertex, endPoint, path, forest);
+             */
         }
 
         System.out.println("Saliendo del ciclo: " + first);
